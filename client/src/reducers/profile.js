@@ -22,7 +22,8 @@ function profileReducer(state, action) {
     case 'GET_NOTIFICATIONS':
       return {
         ...state,
-        notifications: payload,
+        notifications: payload.notifications,
+        unseen: payload.unseen,
         loading: false,
       };
     case 'GET_PROFILES':

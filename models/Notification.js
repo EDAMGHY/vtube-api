@@ -20,6 +20,10 @@ const NotificationSchema = new mongoose.Schema(
       enum: ['upload', 'subscribe', 'comment', 'like'],
       default: 'upload',
     },
+    show: {
+      type: Boolean,
+      default: false,
+    },
     userID: {
       type: String,
     },

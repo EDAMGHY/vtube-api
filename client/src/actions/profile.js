@@ -7,6 +7,7 @@ const initialState = {
   profile: null,
   singleProfile: null,
   profiles: [],
+  unseen: 0,
   subscriptions: [],
   notifications: [],
   loading: true,
@@ -98,6 +99,22 @@ const ProfileProvider = ({ children }) => {
       });
     }
   };
+  const updateNotifications = async () => {
+    try {
+      const res = await axios.put(
+        'http://localhost:5000/api/v1/profile/showNotifications'
+      );
+      dispatch({
+        type: 'UPDATE_NOTIFICATIONS',
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'UPDATE_NOTIFICATIONS_FAIL',
+        payload: { msg: err, status: err.response.status },
+      });
+    }
+  };
   const getProfileByID = async (profileID) => {
     try {
       const res = await axios.get(
@@ -129,6 +146,7 @@ const ProfileProvider = ({ children }) => {
         getSubscriptions,
         clearProfile,
         getNotifications,
+        updateNotifications,
       }}
     >
       {children}

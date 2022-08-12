@@ -12,8 +12,13 @@ const Navbar = ({ setShow, show }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const { isAuthenticated, userProfile, logout } = useAuthGlobalContext();
-  const { profile, notifications, getNotifications } =
-    useProfileGlobalContext();
+  const {
+    profile,
+    notifications,
+    unseen,
+    getNotifications,
+    updateNotifications,
+  } = useProfileGlobalContext();
   const { resetTheme } = useThemeGlobalContext();
   const { search, setSearch, setCat, cat } = useSearchGlobalContext();
   const showSearchBar = () => {
@@ -26,6 +31,7 @@ const Navbar = ({ setShow, show }) => {
   const toggleNotification = () => {
     setShowAccount(false);
     setShowNotification(!showNotification);
+    updateNotifications();
   };
   const onClick = () => {
     navigate('/search');
@@ -52,13 +58,12 @@ const Navbar = ({ setShow, show }) => {
 
   useEffect(() => {
     getNotifications();
-    console.log('notifications', notifications);
     if (userProfile && !profile) {
       setUser(userProfile);
     } else {
       setUser(profile);
     }
-  }, [userProfile, profile]);
+  }, [userProfile, profile, getNotifications]);
 
   return (
     <nav className={`nav ${showSearch ? 'toggle-search' : 'original-nav'}`}>
@@ -109,9 +114,7 @@ const Navbar = ({ setShow, show }) => {
             </button>
             {/* Notification Component Here */}
             <button class='noti-button' onClick={toggleNotification}>
-              {notifications.length !== 0 && (
-                <span class='num'> {notifications.length}</span>
-              )}
+              {unseen !== 0 && <span class='num'> {unseen}</span>}
               <i class='fa-solid fa-bell'></i>
               <ul
                 class={`notification-container  scrollbar ${

@@ -11,6 +11,7 @@ const {
   getSubscriptions,
   getNotifications,
   deleteUser,
+  updateNotifications,
 } = require('../controllers/profile');
 
 const router = Router();
@@ -61,6 +62,7 @@ router.get('/subscriptions', auth, getSubscriptions);
 // @desc GET Profile Notifications
 // @access Private
 router.get('/notifications', auth, getNotifications);
+router.put('/showNotifications', auth, updateNotifications);
 
 // @route DELETE api/v1/profile/
 // @desc delete profile , user , channel & videos

@@ -129,8 +129,23 @@ const getNotifications = async (req, res) => {
       .populate('video')
       .populate('user')
       .sort({ createdAt: 'desc' });
+    const unseenNotifications = notifications.filter((item) => !item.show);
+    res.status(200).json({ notifications, unseen: unseenNotifications.length });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+const updateNotifications = async (req, res) => {
+  try {
+    const notifications = await Notification.updateMany(
+      {
+        userID: req.user.id,
+      },
+      { show: true },
+      { multi: true }
+    );
     res.status(200).json(notifications);
-    console.log('notifications', notifications);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -164,4 +179,5 @@ module.exports = {
   getSubscriptions,
   getNotifications,
   deleteUser,
+  updateNotifications,
 };
