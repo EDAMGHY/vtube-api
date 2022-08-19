@@ -3,8 +3,8 @@ import themeReducer from '../reducers/theme';
 const ThemeContext = React.createContext();
 
 const initialState = {
-  darkMode: localStorage.getItem('darkvtube'),
-  colorScheme: localStorage.getItem('colorschemevtube'),
+  darkMode: localStorage.getItem('darkvtube') || 'light',
+  colorScheme: localStorage.getItem('colorschemevtube') || 'yellow',
 };
 const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(themeReducer, initialState);

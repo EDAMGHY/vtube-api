@@ -191,13 +191,15 @@ router.put('/subscribe/:idChannel', auth, async (req, res) => {
     };
     channel.subscribers.unshift(subscriber);
     await channel.save();
-    const notification = await Notification({
-      user: req.user.id,
-      channel: channel._id,
-      type: 'subscribe',
-      userID: channel.user._id.toString(),
-    });
-    await notification.save();
+    if (channel.user._id.toString() !== req.user.id) {
+      const notification = await Notification({
+        user: req.user.id,
+        channel: channel._id,
+        type: 'subscribe',
+        userID: channel.user._id.toString(),
+      });
+      await notification.save();
+    }
     res.json(channel);
   } catch (err) {
     console.error(err);

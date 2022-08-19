@@ -44,7 +44,7 @@ const SingleProfile = () => {
               <div className='info'>
                 {isAuthenticated && singleProfile.user._id === user._id ? (
                   <Link className='btn-rounded' to='/profile/edit'>
-                    <i class='fa-solid fa-pen-to-square'></i>
+                    <i className='fa-solid fa-pen-to-square'></i>
                   </Link>
                 ) : (
                   ''

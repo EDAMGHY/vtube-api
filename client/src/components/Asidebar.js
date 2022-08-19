@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthGlobalContext } from '../actions/auth';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 const Asidebar = ({ show }) => {
+  const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthGlobalContext();
   const [desktop, setDesktop] = useState(false);
   useEffect(() => {
@@ -40,7 +41,7 @@ const Asidebar = ({ show }) => {
           <>
             <li>
               <NavLink activeclassname='active' to='/dashboard'>
-                <i class='fa-solid fa-table-columns'></i>
+                <i className='fa-solid fa-table-columns'></i>
                 Dashboard
               </NavLink>
             </li>
@@ -52,7 +53,7 @@ const Asidebar = ({ show }) => {
             </li>
             <li>
               <NavLink activeclassname='active' to='/subscriptions'>
-                <i class='fa-solid fa-square-rss'></i>
+                <i className='fa-solid fa-square-rss'></i>
                 Subscriptions
               </NavLink>
             </li>
@@ -67,12 +68,17 @@ const Asidebar = ({ show }) => {
             Profiles
           </NavLink>
         </li>
-        <li>
-          <NavLink activeclassname='active' to='/channels'>
-            <i className='fa-solid fa-clapperboard'></i>
-            Channels
-          </NavLink>
-        </li>
+        {user && isAuthenticated ? (
+          <li>
+            <NavLink activeclassname='active' to='/channels'>
+              <i className='fa-solid fa-clapperboard'></i>
+              Channels
+            </NavLink>
+          </li>
+        ) : (
+          ''
+        )}
+
         <li>
           <NavLink activeclassname='active' to='/settings'>
             <i className='fa-solid fa-cog'></i>
@@ -81,7 +87,7 @@ const Asidebar = ({ show }) => {
         </li>
         {user && isAuthenticated ? (
           <li>
-            <a onClick={Logout} href='/'>
+            <a onClick={Logout} href='/login'>
               <i className='fa-solid fa-arrow-right-from-bracket'></i>
               Logout
             </a>

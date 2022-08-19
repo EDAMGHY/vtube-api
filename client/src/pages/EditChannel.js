@@ -89,7 +89,7 @@ const EditProfile = () => {
               <label htmlFor='title'>Title :</label>
               <textarea
                 data-input='field2'
-                class='textarea'
+                className='textarea'
                 placeholder='Enter Title...'
                 id='title'
                 name='title'

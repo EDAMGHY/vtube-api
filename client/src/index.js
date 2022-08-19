@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { AuthProvider } from './actions/auth';
@@ -11,17 +12,19 @@ import { VideoProvider } from './actions/video';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider>
-    <AuthProvider>
-      <ProfileProvider>
-        <ChannelProvider>
-          <VideoProvider>
-            <SearchProvider>
-              <App />
-            </SearchProvider>
-          </VideoProvider>
-        </ChannelProvider>
-      </ProfileProvider>
-    </AuthProvider>
-  </ThemeProvider>
+  <Router>
+    <ThemeProvider>
+      <AuthProvider>
+        <ProfileProvider>
+          <ChannelProvider>
+            <VideoProvider>
+              <SearchProvider>
+                <App />
+              </SearchProvider>
+            </VideoProvider>
+          </ChannelProvider>
+        </ProfileProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  </Router>
 );

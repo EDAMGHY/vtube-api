@@ -45,7 +45,7 @@ const Dashboard = () => {
           </>
         ) : (
           <>
-            <div class='cover-image'>
+            <div className='cover-image'>
               <img
                 src={
                   theChannel.cover
@@ -55,7 +55,7 @@ const Dashboard = () => {
                 alt=''
               />
             </div>
-            <div class='image-dashboard'>
+            <div className='image-dashboard'>
               <img
                 src={
                   theChannel.image
@@ -66,17 +66,19 @@ const Dashboard = () => {
               />
               <div>
                 <Link to='/video/'>
-                  <i class='fa-solid fa-upload'></i> <span>Upload Video</span>
+                  <i className='fa-solid fa-upload'></i>{' '}
+                  <span>Upload Video</span>
                 </Link>
                 <Link to='/channel/edit'>
-                  <i class='fa-solid fa-pen-to-square'></i> <span>Edit</span>
+                  <i className='fa-solid fa-pen-to-square'></i>{' '}
+                  <span>Edit</span>
                 </Link>
                 <Link onClick={() => deleteChannel(theChannel._id)} to=''>
-                  <i class='fa-solid fa-trash-can'></i> <span>Delete</span>
+                  <i className='fa-solid fa-trash-can'></i> <span>Delete</span>
                 </Link>
               </div>
             </div>
-            <nav class='dashboard-nav'>
+            <nav className='dashboard-nav'>
               <ul>
                 <li>
                   <button
@@ -99,26 +101,26 @@ const Dashboard = () => {
               </ul>
             </nav>
             {subnav === 'overview' ? (
-              <div class='info'>
-                <h3 class='h2 name'>
+              <div className='info'>
+                <h3 className='h2 name'>
                   {theChannel.title}{' '}
-                  <i class='fa-solid fa-check check small'></i>
+                  <i className='fa-solid fa-check check small'></i>
                 </h3>
-                <h3 class='subs'>
+                <h3 className='subs'>
                   {theChannel.subscribers && theChannel.subscribers.length}{' '}
                   Subscribers
                 </h3>
-                <div class='bio'>
+                <div className='bio'>
                   <h4>Bio</h4>
                   <span>{theChannel.description}</span>
                 </div>
                 {/* <div>
                   <h4>Location</h4>
-                  <span class='location'>Morocco</span>
+                  <span className='location'>Morocco</span>
                 </div> */}
                 <div>
                   <h4>Channel Created At</h4>
-                  <span class='createdAt'>
+                  <span className='createdAt'>
                     {theChannel.createdAt &&
                       new Date(theChannel.createdAt).toLocaleDateString()}
                   </span>

@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <Section nameClass='main'>
       {/* <SelectHome /> */}
-      <div class='all-videos'>
+      <div className='all-videos'>
         {videos && videos.length > 0 ? (
           videos.map((video) => (
             <Link
@@ -36,7 +36,7 @@ const Home = () => {
                 .split(' ')
                 .join('-')}/${video._id}`}
             >
-              <div class='video'>
+              <div className='video'>
                 {isAuthenticated &&
                 userChannel &&
                 userChannel._id === video.channel._id ? (
@@ -53,15 +53,15 @@ const Home = () => {
                   ''
                 )}
 
-                <div class='vid-thumb'>
+                <div className='vid-thumb'>
                   <img
                     src={`http://localhost:5000/${video.thumbnail}`}
                     alt=''
                   />
                   <span>{secondsToTime(video.duration)}</span>
                 </div>
-                <div class='vid-info'>
-                  <div class='channel-thumb'>
+                <div className='vid-info'>
+                  <div className='channel-thumb'>
                     <img
                       src={
                         video.channel.image
@@ -71,17 +71,17 @@ const Home = () => {
                       alt=''
                     />
                   </div>
-                  <div class='video-data'>
+                  <div className='video-data'>
                     <h5>{shortenText(video.title)}</h5>
-                    <span class='channel-name'>
+                    <span className='channel-name'>
                       {video.channel.title}{' '}
-                      <i class='fa-solid fa-check check'></i>
+                      <i className='fa-solid fa-check check'></i>
                     </span>
                     <div>
-                      <span class='views'>
+                      <span className='views'>
                         {intToString(video.views)} views
                       </span>
-                      <span class='vid-published'>
+                      <span className='vid-published'>
                         {timeSince(video.createdAt)}
                       </span>
                     </div>

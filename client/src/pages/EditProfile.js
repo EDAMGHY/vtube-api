@@ -122,7 +122,7 @@ const EditProfile = () => {
               <label htmlFor='bio'>Bio :</label>
               <textarea
                 data-input='field2'
-                class='textarea'
+                className='textarea'
                 placeholder='Enter Bio...'
                 id='bio'
                 name='bio'

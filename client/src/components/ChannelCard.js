@@ -51,10 +51,10 @@ const ChannelCard = ({ channel }) => {
       {isAuthenticated && channel && channel.user._id === user && user._id ? (
         <div className='current-user'>
           <Link to='/channel/edit'>
-            <i class='fa-solid fa-pen-to-square'></i>
+            <i className='fa-solid fa-pen-to-square'></i>
           </Link>
           <button onClick={removeChannel}>
-            <i class='fa-solid fa-trash-can'></i>
+            <i className='fa-solid fa-trash-can'></i>
           </button>
         </div>
       ) : (

@@ -8,11 +8,8 @@ const ProfileCard = ({ profile }) => {
       {isAuthenticated && profile.user._id === user._id ? (
         <div className='current-user'>
           <Link to='/profile/edit'>
-            <i class='fa-solid fa-pen-to-square'></i>
+            <i className='fa-solid fa-pen-to-square'></i>
           </Link>
-          {/* <button>
-            <i class='fa-solid fa-trash-can'></i>
-          </button> */}
         </div>
       ) : (
         ''

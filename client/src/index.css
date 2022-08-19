@@ -690,6 +690,10 @@ body::-webkit-scrollbar-thumb:hover,
 .nav .notification-container li .noti-info span {
   color: #999;
 }
+.nav .notification-container li .noti-info strong {
+  color: var(--primary);
+  font-weight: bold;
+}
 .nav .notification-container li .video-img img {
   border-radius: 10px;
   object-fit: cover;

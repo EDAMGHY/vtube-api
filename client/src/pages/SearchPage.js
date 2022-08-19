@@ -32,7 +32,7 @@ const SearchPage = () => {
   }, [search, cat, sort]);
   return (
     <Section nameClass='main'>
-      <div class='filters'>
+      <div className='filters'>
         <h5>Sort</h5>
         <select
           name='sort'
@@ -47,7 +47,7 @@ const SearchPage = () => {
           <option value='views'>views</option>
         </select>
       </div>
-      <div class='search-page'>
+      <div className='search-page'>
         {searched && searched.length > 0 ? (
           searched
             .filter((vid) => vid.category)
@@ -59,8 +59,8 @@ const SearchPage = () => {
                   .split(' ')
                   .join('')}/${vid._id}`}
               >
-                <div class='search-video'>
-                  <div class='vid-thumb'>
+                <div className='search-video'>
+                  <div className='vid-thumb'>
                     <img
                       src={
                         vid.thumbnail
@@ -71,15 +71,17 @@ const SearchPage = () => {
                     />
                     <span>{secondsToTime(vid.duration)}</span>
                   </div>
-                  <div class='vid-info'>
+                  <div className='vid-info'>
                     <h4>{vid.title}</h4>
-                    <div class='views-time'>
-                      <span class='views'>{intToString(vid.views)} views</span>
-                      <span class='vid-published'>
+                    <div className='views-time'>
+                      <span className='views'>
+                        {intToString(vid.views)} views
+                      </span>
+                      <span className='vid-published'>
                         {timeSince(vid.createdAt)}
                       </span>
                     </div>
-                    <div class='channel-thumb'>
+                    <div className='channel-thumb'>
                       <img
                         src={
                           vid.channel.image
@@ -88,12 +90,12 @@ const SearchPage = () => {
                         }
                         alt=''
                       />
-                      <span class='channel-name'>
+                      <span className='channel-name'>
                         {vid.channel.title}{' '}
-                        <i class='fa-solid fa-check check'></i>
+                        <i className='fa-solid fa-check check'></i>
                       </span>
                     </div>
-                    <p class='desc'>{shortenText(vid.description, 100)}</p>
+                    <p className='desc'>{shortenText(vid.description, 100)}</p>
                   </div>
                 </div>
               </Link>
@@ -107,7 +109,7 @@ const SearchPage = () => {
             .filter((sear) => sear.subscribers)
             .map((cha) => (
               <Link to={`/channels/${cha.user}`}>
-                <div class='search-channel'>
+                <div className='search-channel'>
                   <img
                     src={
                       cha.image
@@ -116,19 +118,19 @@ const SearchPage = () => {
                     }
                     alt=''
                   />
-                  <div class='cha-info'>
+                  <div className='cha-info'>
                     <h4>
-                      {cha.title} <i class='fa-solid fa-check check'></i>
+                      {cha.title} <i className='fa-solid fa-check check'></i>
                     </h4>
-                    <div class='views-time'>
-                      <span class='views'>
+                    <div className='views-time'>
+                      <span className='views'>
                         {intToString(cha.subscribers.length)} Subscribers
                       </span>
                     </div>
-                    <p class='desc'>{shortenText(cha.description, 100)}</p>
+                    <p className='desc'>{shortenText(cha.description, 100)}</p>
                   </div>
-                  <div class='btns'>
-                    <button class='btn-2'>Subscribe</button>
+                  <div className='btns'>
+                    <button className='btn-2'>Subscribe</button>
                   </div>
                 </div>
               </Link>
@@ -141,7 +143,7 @@ const SearchPage = () => {
             .filter((sear) => sear.location)
             .map((pro) => (
               <Link to={`/profiles/${pro.user._id}`}>
-                <div class='search-user'>
+                <div className='search-user'>
                   <img
                     src={
                       pro.image
@@ -150,12 +152,12 @@ const SearchPage = () => {
                     }
                     alt=''
                   />
-                  <div class='user-info'>
+                  <div className='user-info'>
                     <h4>{pro.user.name}</h4>
-                    <div class='location'>
+                    <div className='location'>
                       Location: <span>{pro.location}</span>
                     </div>
-                    <p class='desc'>{shortenText(pro.bio, 100)}</p>
+                    <p className='desc'>{shortenText(pro.bio, 100)}</p>
                   </div>
                 </div>
               </Link>

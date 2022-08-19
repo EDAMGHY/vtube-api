@@ -75,7 +75,7 @@ const EditVideo = () => {
           </div>
           <form encType='multipart/form-data' onSubmit={(e) => onSubmit(e)}>
             <div className='file-upload'>
-              <i class='fa-solid fa-video'></i>
+              <i className='fa-solid fa-video'></i>
               <input
                 type='file'
                 onChange={(e) => onChangeVideo(e)}
@@ -98,12 +98,12 @@ const EditVideo = () => {
                 value={title}
               />
             </div>
-            <div class='form-select'>
+            <div className='form-select'>
               <label for='category'>Category</label>
               <select
                 id='category'
                 name='category'
-                class='select'
+                className='select'
                 onChange={(e) => onChange(e)}
                 value={category}
               >
@@ -139,7 +139,7 @@ const EditVideo = () => {
               <input
                 data-input='field2'
                 type='text'
-                class='input'
+                className='input'
                 placeholder='Enter Tags...'
                 id='tags'
                 name='tags'

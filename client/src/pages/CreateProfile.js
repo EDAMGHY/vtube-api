@@ -99,7 +99,7 @@ const CreateProfile = () => {
               </label>
               <textarea
                 data-input='field2'
-                class='textarea'
+                className='textarea'
                 placeholder='Enter Bio...'
                 id='bio'
                 name='bio'

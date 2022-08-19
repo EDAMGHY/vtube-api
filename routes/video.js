@@ -311,14 +311,16 @@ router.post(
       };
       video.comments.unshift(newComment);
       const profile = await Profile.findOne({ user: video.channel.user._id });
-      const notification = await Notification({
-        user: req.user.id,
-        video: video._id,
-        channel: video.channel._id,
-        userID: profile.user,
-        type: 'comment',
-      });
-      await notification.save();
+      if (profile.user.toString() !== req.user.id) {
+        const notification = await Notification({
+          user: req.user.id,
+          video: video._id,
+          channel: video.channel._id,
+          userID: profile.user,
+          type: 'comment',
+        });
+        await notification.save();
+      }
       await video.save();
       res.json(video.comments);
     } catch (err) {

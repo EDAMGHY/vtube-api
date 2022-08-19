@@ -65,16 +65,18 @@ const SingleChannel = () => {
     <main className='channels'>
       <div className='container'>
         {' '}
-        <h3 class='h3'>
-          <span class='primary'>{singleChannel && singleChannel.title}</span>{' '}
+        <h3 className='h3'>
+          <span className='primary'>
+            {singleChannel && singleChannel.title}
+          </span>{' '}
           Channel
         </h3>
-        <div class='single-channel'>
+        <div className='single-channel'>
           {singleChannel === null ? (
             <h2>Loading</h2>
           ) : (
             <>
-              <div class='cover-image'>
+              <div className='cover-image'>
                 <img
                   src={
                     singleChannel.cover
@@ -84,7 +86,7 @@ const SingleChannel = () => {
                   alt=''
                 />
               </div>
-              <div class='image-channel'>
+              <div className='image-channel'>
                 <img
                   src={
                     singleChannel.image
@@ -99,10 +101,10 @@ const SingleChannel = () => {
                   singleChannel.user._id === user._id ? (
                     <>
                       <button onClick={onDelete}>
-                        <i class='fa-solid fa-trash-can'></i>
+                        <i className='fa-solid fa-trash-can'></i>
                       </button>
                       <button onClick={() => navigate('/channel/edit')}>
-                        <i class='fa-solid fa-pen-to-square'></i>
+                        <i className='fa-solid fa-pen-to-square'></i>
                       </button>
                     </>
                   ) : (
@@ -114,10 +116,10 @@ const SingleChannel = () => {
                   >
                     Subscribe
                   </button>
-                  <i class='fa-solid fa-bell active'></i>
+                  <i className='fa-solid fa-bell active'></i>
                 </div>
               </div>
-              <nav class='channel-nav'>
+              <nav className='channel-nav'>
                 <ul>
                   <li>
                     <button
@@ -140,22 +142,22 @@ const SingleChannel = () => {
                 </ul>
               </nav>
               {subnav === 'overview' ? (
-                <div class='info'>
-                  <h3 class='h2 name'>
+                <div className='info'>
+                  <h3 className='h2 name'>
                     {singleChannel.title}{' '}
-                    <i class='fa-solid fa-check check small'></i>
+                    <i className='fa-solid fa-check check small'></i>
                   </h3>
-                  <h3 class='subs'>
+                  <h3 className='subs'>
                     {singleChannel.subscribers.length} Subscribers
                   </h3>
-                  <div class='bio'>
+                  <div className='bio'>
                     <h4>Bio</h4>
                     <span>{singleChannel.description}</span>
                   </div>
 
                   <div>
                     <h4>Channel Created At</h4>
-                    <span class='createdAt'>
+                    <span className='createdAt'>
                       {' '}
                       {singleChannel.createdAt &&
                         new Date(singleChannel.createdAt).toLocaleDateString()}

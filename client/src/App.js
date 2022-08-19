@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuthGlobalContext } from './actions/auth';
 import { useThemeGlobalContext } from './actions/theme';
@@ -28,9 +33,11 @@ import SingleProfile from './pages/SingleProfile';
 import Subscriptions from './pages/Subscriptions';
 import NotFound from './pages/NotFound';
 import NoAccount from './pages/NoAccount';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const { dispatch, loadUser, loadProfile, loadChannel } =
+  const navigate = useNavigate();
+  const { dispatch, loadUser, loadProfile, loadChannel, isAuthenticated } =
     useAuthGlobalContext();
   const { darkMode, colorScheme } = useThemeGlobalContext();
   useEffect(() => {
@@ -39,6 +46,9 @@ function App() {
       // if there is a token set axios headers for all requests
       setAuthToken(localStorage.tokenvtube);
     }
+    // if (!localStorage.tokenvtube) {
+    //   navigate('/login');
+    // }
     // try to fetch a user, if no token or invalid token we
     // will get a 401 response from our API
     dispatch(loadUser());
@@ -56,40 +66,122 @@ function App() {
   }, [darkMode, colorScheme]);
 
   return (
-    <Router>
-      <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='channel'>
-          <Route index element={<CreateChannel />} />
-          <Route path='edit' element={<EditChannel />} />
-        </Route>
-        <Route path='video'>
-          <Route index element={<CreateVideo />} />
-          <Route path='edit/:id' element={<EditVideo />} />
-          {/* <Route path='edit' element={<EditVideo />} /> */}
-        </Route>
-        <Route path='profile'>
-          <Route index element={<CreateProfile />} />
-          <Route path='edit' element={<EditProfile />} />
-        </Route>
-        <Route path='*' element={<NotFound />} />
-        <Route path='/no-account' element={<NoAccount />} />
-        <Route path='/' element={<NavAside />}>
-          <Route index element={<Home />} />
-          <Route path='dashboard' element={<Dashboard />} />
-          <Route path='search' element={<SearchPage />} />
-          <Route path='account' element={<Account />} />
-          <Route path='settings' element={<Settings />} />
-          <Route path='subscriptions' element={<Subscriptions />} />
-          <Route path='profiles' element={<AllProfiles />} />
-          <Route path='channels' element={<AllChannels />} />
-          <Route path='profiles/:id' element={<SingleProfile />} />
-          <Route path='channels/:id' element={<SingleChannel />} />
-          <Route path='videos/:channel/:id' element={<SingleVideo />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='channel'>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <CreateChannel />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='edit'
+          element={
+            <ProtectedRoute>
+              <EditChannel />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
+      <Route path='video'>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <CreateVideo />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='edit/:id'
+          element={
+            <ProtectedRoute>
+              <EditVideo />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route path='edit' element={<EditVideo />} /> */}
+      </Route>
+      <Route path='profile'>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <CreateProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='edit'
+          element={
+            <ProtectedRoute>
+              <EditProfile />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
+      <Route path='*' element={<NotFound />} />
+      <Route path='/no-account' element={<NoAccount />} />
+      <Route path='/' element={<NavAside />}>
+        <Route index element={<Home />} />
+        <Route
+          path='dashboard'
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='search' element={<SearchPage />} />
+        <Route
+          path='account'
+          element={
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='settings' element={<Settings />} />
+        <Route
+          path='subscriptions'
+          element={
+            <ProtectedRoute>
+              <Subscriptions />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='profiles' element={<AllProfiles />} />
+        <Route
+          path='channels'
+          element={
+            <ProtectedRoute>
+              <AllChannels />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='profiles/:id' element={<SingleProfile />} />
+        <Route
+          path='channels/:id'
+          element={
+            <ProtectedRoute>
+              <SingleChannel />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='videos/:channel/:id'
+          element={
+            <ProtectedRoute>
+              <SingleVideo />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 

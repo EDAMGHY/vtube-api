@@ -17,13 +17,13 @@ const DashboardVids = ({ name, channelID, isAdmin = true }) => {
 
   if (channelVideos.length === 0) {
     return (
-      <div class='no-videos'>
-        <div class='image'>
+      <div className='no-videos'>
+        <div className='image'>
           <img src='/img/bg-play-yellow.svg' alt='' />
         </div>
-        <h3 class='text-center'>This Channel has no videos!</h3>
+        <h3 className='text-center'>This Channel has no videos!</h3>
         {isAdmin && (
-          <Link to={`/video`} class='btn'>
+          <Link to={`/video`} className='btn'>
             Upload Video
           </Link>
         )}
@@ -45,7 +45,7 @@ const DashboardVids = ({ name, channelID, isAdmin = true }) => {
             .split(' ')
             .join('-')}/${vid._id}`}
         >
-          <div class='vid'>
+          <div className='vid'>
             <div className='vid-auth'>
               {isAdmin && (
                 <>
@@ -59,7 +59,7 @@ const DashboardVids = ({ name, channelID, isAdmin = true }) => {
                 </>
               )}
             </div>
-            <div class='image-container'>
+            <div className='image-container'>
               <img
                 src={
                   vid.thumbnail
@@ -68,13 +68,13 @@ const DashboardVids = ({ name, channelID, isAdmin = true }) => {
                 }
                 alt=''
               />
-              <span class='time'> {secondsToTime(vid.duration)} </span>
+              <span className='time'> {secondsToTime(vid.duration)} </span>
             </div>
-            <div class='info-vid'>
+            <div className='info-vid'>
               <h4>{shortenText(vid.title)}</h4>
               <div>
-                <span class='views'>{intToString(vid.views)} views</span>
-                <span class='date'>{timeSince(vid.createdAt)}</span>
+                <span className='views'>{intToString(vid.views)} views</span>
+                <span className='date'>{timeSince(vid.createdAt)}</span>
               </div>
             </div>
           </div>
